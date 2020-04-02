@@ -1,0 +1,11 @@
+<div class="main posts-index">
+  <div class="container">
+    <% @posts.each do |post| %>
+        <div class="posts-index-item">
+            <div class="post-left">
+                <%= link_to( post.content , posts_show_path(post) ) %>
+            </div>
+        </div>
+    <% end %>
+  </div>
+</div>

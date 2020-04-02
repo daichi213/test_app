@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>TestApp</title>
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+
+    <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
+  </head>
+
+  <body>
+    <!--ヘッダーのコードを貼り付けてください-->
+    <header>
+      <div class="header-logo">
+        <%= link_to("Tweet" , root_path) %>
+      </div>
+      <ul class="header-menus">
+        <% if session[:user_id] %>
+          <li>
+            <%= User.find_by(id: @current_user.id).name %>
+          </li>
+          <li>
+            <%= link_to("投稿一覧" , posts_index_path) %>
+          </li>
+          <li>
+            <%= link_to("新規投稿" , posts_new_path) %>
+          </li>
+          <li>
+            <%= link_to("新規登録" , users_new_path) %>
+          </li>
+          <!-- プレフィックスに変数を渡す　コントローラーに変数を別途定義 -->
+          <!-- logoutのプレフィックスの定義を失敗 -->
+          <!-- logoutに:idの変数を挟んだ結果routeが見つからない事象が発生してしまった。以下のようにルートパスの直下にlogoutを持ってくることで解決。 -->
+          <!-- postのアクションに対してlink_toでアクセスしようとした際に第２引数にメソッドを定義していなかったためエラーが発生した。 -->
+          <li>
+            <%= link_to("ログアウト" , logout_path , {method:"post"}) %>
+          </li>
+        <% else %>
+          <li>
+            <%= link_to("TweetAppとは" , about_path) %>
+          </li>
+          <li>
+            <%= link_to("ログイン" , users_login_form_path) %>
+          </li>
+        <% end %>
+
+      </ul>
+    </header>
+    <%= yield %>
+  </body>
+</html>
