@@ -6,6 +6,7 @@
         <p><%= @user.name %></p>
         <% if @current_user.id == @user.id %>
           <%= link_to "編集" , users_edit_path(@user) %>
+          <%= link_to "お気に入り" , users_like_path(@user) %>
         <% end %>
             <!-- ここにユーザー情報の編集ボタンを作成 -->
     </div>

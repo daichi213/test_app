@@ -56,6 +56,11 @@ class UsersController < ApplicationController
     redirect_to posts_index_path
   end
 
+  def like
+    @user = User.find_by id: @current_user.id
+    @likes_post_id = Like.where user_id: @current_user.id
+  end
+
   def logout
     session[:user_id] = nil
     redirect_to root_path

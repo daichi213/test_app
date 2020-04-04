@@ -1,0 +1,23 @@
+<div class="main user-show">
+    <div class="container">
+      <div class="user">
+          <!-- ここにユーザーの登録画像とユーザー名を表示 -->
+          <img src="<%= "/image/#{@user.image_name}" %>">
+          <p><%= @user.name %></p>
+          <% if @current_user.id == @user.id %>
+            <%= link_to "編集" , users_edit_path(@user) %>
+          <%= link_to "お気に入り" , users_like_path(@user) %>
+          <% end %>
+              <!-- ここにユーザー情報の編集ボタンを作成 -->
+      </div>
+      <!-- /asset/stylesheetに格納している全scssファイルは全てのviewsファイルで適用される -->
+              <% @likes_post_id.each do |like| %>
+                <% post = Post.find_by id: like.post_id %>
+                <div class="posts-index-item">
+                  <div class="post-left">
+                    <%= link_to post.content , posts_show_path(post) %>
+                  </div>
+                </div>
+              <% end %>
+    </div>
+  </div>
