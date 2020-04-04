@@ -8,6 +8,8 @@ Rails.application.routes.draw do
   post "/users/login" , to: "users#login" , as: "users_login"
   get "/users/index" , to: "users#index"
   get '/users/:id/show' , to: "users#show" , as: "users_show"
+  get '/users/:id/edit' , to: "users#edit" , as: "users_edit"
+  post '/users/:id/regist' , to: "users#regist" , as: "users_regist"
   post "/logout" , to:"users#logout" , as: "logout"
   post "/posts/create" , to: "posts#create"
   get "/posts/new" , to: "posts#new"

@@ -1,0 +1,16 @@
+<div class="main users-edit">
+    <div class="container">
+        <div class="form-heading">アカウント編集</div>
+            <div class="form users-form">
+                <div class="form-body">
+                    <%= form_tag users_regist_path(@user) , {multipart: true} do %>
+                        <div class="users-form">
+                            <input name="image" type="file">
+                            <input type="submit">
+                        </div>
+                    <% end %>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

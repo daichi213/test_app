@@ -18,16 +18,13 @@
       <ul class="header-menus">
         <% if session[:user_id] %>
           <li>
-            <%= User.find_by(id: @current_user.id).name %>
+            <%= link_to( User.find_by(id: @current_user.id).name , users_show_path(@current_user) )%>
           </li>
           <li>
             <%= link_to("投稿一覧" , posts_index_path) %>
           </li>
           <li>
             <%= link_to("新規投稿" , posts_new_path) %>
-          </li>
-          <li>
-            <%= link_to("新規登録" , users_new_path) %>
           </li>
           <!-- プレフィックスに変数を渡す　コントローラーに変数を別途定義 -->
           <!-- logoutのプレフィックスの定義を失敗 -->
@@ -43,9 +40,16 @@
           <li>
             <%= link_to("ログイン" , users_login_form_path) %>
           </li>
+          <li>
+            <%= link_to("新規登録" , users_new_path) %>
+          </li>
         <% end %>
-
       </ul>
+      <% if flash[:notice] %>
+          <div class="flash">
+            <%= flash[:notice] %>
+          </div>
+      <% end %>
     </header>
     <%= yield %>
   </body>
